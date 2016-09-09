@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+[ExecuteInEditMode]
 public class ShapeMeshController : MonoBehaviour {
 
 
@@ -11,9 +12,7 @@ public class ShapeMeshController : MonoBehaviour {
 
     /***** INITIALIZER *****/
     void Awake() {
-        // HAX
-        Debug.Log(filter);
-        Debug.Log(renderer);
+        if (renderer == null) return; // HAX set that material
     }
 
 

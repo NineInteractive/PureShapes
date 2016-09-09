@@ -60,6 +60,7 @@ public abstract class ShapeProperty : IEquatable<ShapeProperty>, ICloneable {
         if (center == other.center &&
             scale == other.scale &&
             Mathf.Approximately(angle, other.angle) &&
+            color.Same(other.color) &&
             border == other.border) { //?
             return true;
         }

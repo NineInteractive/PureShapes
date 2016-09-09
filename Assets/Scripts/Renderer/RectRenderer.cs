@@ -45,7 +45,7 @@ public class RectRenderer : ShapeRenderer {
         }
 
         // color change
-        if (property.color != cachedProperty.color) {
+        if (!property.color.Same(cachedProperty.color)) {
             UpdateInnerMeshColor(property.color);
         }
 
@@ -77,7 +77,7 @@ public class RectRenderer : ShapeRenderer {
     }
 
     protected override void CacheProperty() {
-        cachedProperty = property;
+        cachedProperty = property.Clone() as RectProperty;
         propertyObjectChanged = false;
     }
 

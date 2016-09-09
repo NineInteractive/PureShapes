@@ -115,6 +115,14 @@ public static class UnityExtensions {
         return m;
     }
 
+    public static bool Same(this Color c1, Color c2) {
+        return c1.a.Approx(c2.a) && c1.r.Approx(c2.r) && c1.g.Approx(c2.g) && c1.b.Approx(c2.b);
+    }
+
+    public static bool Approx(this float f1, float f2) {
+        return Mathf.Approximately(f1, f2);
+    }
+
     /*
      * DUNNO
      */

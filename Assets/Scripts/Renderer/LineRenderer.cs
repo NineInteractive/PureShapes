@@ -57,7 +57,7 @@ public class LineRenderer : ShapeRenderer {
     }
 
     protected override void CacheProperty() {
-        cachedProperty = property;
+        cachedProperty = property.Clone() as LineProperty;
         propertyObjectChanged = false;
     }
 

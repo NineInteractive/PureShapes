@@ -44,7 +44,8 @@ public abstract class ShapeRenderer : MonoBehaviour {
 
     /***** PUBLIC: FORCE RENDER *****/
     public void RenderAndUpdatePropertyIfNeeded() {
-        if (propertyObjectChanged) {
+        if (propertyObjectChanged ||
+            (Application.isEditor && PropertyObjectModifiedInEditor())) {
             UpdateGameObject();
 
             UpdateMeshIfNeeded();
@@ -57,7 +58,6 @@ public abstract class ShapeRenderer : MonoBehaviour {
             UpdateMeshIfNeeded();
 
             CacheProperty();
-            propertyObjectChanged = false;
         }
     }
 
@@ -80,4 +80,6 @@ public abstract class ShapeRenderer : MonoBehaviour {
 
     // Extract ShapeProperty from GameObject/Transform
     protected abstract ShapeProperty GameObjectToShapeProperty();
+
+    protected abstract bool PropertyObjectModifiedInEditor();
 }

@@ -61,6 +61,10 @@ public class LineRenderer : ShapeRenderer {
         propertyObjectChanged = false;
     }
 
+    protected override bool PropertyObjectModifiedInEditor() {
+        return _property != cachedProperty;
+    }
+
     /*
      * Mesh
      */

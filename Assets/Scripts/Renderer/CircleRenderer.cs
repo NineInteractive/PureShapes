@@ -78,6 +78,10 @@ public class CircleRenderer : ShapeRenderer {
         propertyObjectChanged = false;
     }
 
+    protected override bool PropertyObjectModifiedInEditor() {
+        return _property != cachedProperty;
+    }
+
 
     /***** PRIVATE: MESH CREATION *****/
     void UpdateInnerMesh() {

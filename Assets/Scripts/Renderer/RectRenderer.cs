@@ -16,7 +16,6 @@ public class RectRenderer : ShapeRenderer {
     /***** PRIVATE: VARIABLES *****/
     [SerializeField]
     RectProperty _property = new RectProperty(color:Color.black);
-    [SerializeField]
     RectProperty cachedProperty = new RectProperty(color:Color.black, width:float.Epsilon);
 
 
@@ -82,6 +81,9 @@ public class RectRenderer : ShapeRenderer {
         propertyObjectChanged = false;
     }
 
+    protected override bool PropertyObjectModifiedInEditor() {
+        return _property != cachedProperty;
+    }
 
     /***** PRIVATE: MESH UPDATE *****/
     void UpdateInnerMesh() {

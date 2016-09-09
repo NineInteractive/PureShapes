@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 [ExecuteInEditMode]
 [SelectionBase]
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class CircleRenderer : ShapeRenderer {
 
 

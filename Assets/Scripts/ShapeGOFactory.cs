@@ -43,8 +43,6 @@ public static class ShapeGOFactory {
         return renderer;
     }
 
-    // this should probably be separate...
-    // TODO line property should be factored out
     static LineRenderer InstantiateLine(LineProperty property) {
         var go = InstantiateGO(LINE_PREFAB_PATH, property.center);
         var lr = go.GetComponent<LineRenderer>();

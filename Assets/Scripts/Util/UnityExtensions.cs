@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /*
@@ -91,6 +92,27 @@ public static class UnityExtensions {
 
     public static Vector2 BottomRight(this Bounds b) {
         return new Vector2(b.max.x, b.min.y);
+    }
+
+    /***** GAME OBJECT *****/
+    public static GameObject GetChildGameObjectByName(this GameObject fromGameObject, string withName) {
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+        return null;
+    }
+
+    public static T GetComponentInChildByName<T>(this GameObject fromGameObject, string withName) {
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts) {
+            if (t.gameObject.name == withName) return t.gameObject.GetComponent<T>();
+        }
+        return default(T);
+    }
+
+    public static Mesh CreateMesh(this VertexHelper vh) {
+        var m = new Mesh();
+        vh.FillMesh(m);
+        return m;
     }
 
     /*

@@ -4,27 +4,23 @@ using System.Collections;
 
 [ExecuteInEditMode]
 [SelectionBase]
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class RectRenderer : ShapeRenderer {
+
+
+    /***** CONST *****/
 
 
     /***** STATIC: READONLY *****/
     static readonly Vector2 TEXTURE_MID_POINT = new Vector2(0.5f, 0.5f);
-
-
-    /***** PUBLIC: VARIABLES *****/
-    // should be assigned
-    public MeshFilter innerMeshFilter;
-    public MeshRenderer innerMeshRenderer;
-    public MeshFilter borderMeshFilter;
-    public MeshRenderer borderMeshRenderer;
-
 
     /***** PRIVATE: VARIABLES *****/
     [SerializeField]
     RectProperty _property = new RectProperty(color:Color.black);
     [SerializeField]
     RectProperty cachedProperty = new RectProperty(color:Color.black, width:float.Epsilon);
+
+
+    /***** INITIALIZER *****/
 
 
     /***** OVERRIDE: SHAPE RENDERER *****/
@@ -109,18 +105,16 @@ public class RectRenderer : ShapeRenderer {
     }
 
     void UpdateInnerMeshColor(Color color) {
-        MeshUtil.UpdateColor(innerMeshRenderer, color);
+        innerMeshController.color = color;
     }
 
     void UpdateBorderMeshColor(Color color) {
-        MeshUtil.UpdateColor(borderMeshRenderer, color);
+        outerMeshController.color = color;
     }
 
     void RemoveBorder() {
         // TODO just disable
-        using (var vh = new VertexHelper()) {
-            MeshUtil.UpdateMesh(borderMeshFilter, vh);
-        }
+        outerMeshController.mesh = new Mesh();
     }
 
 
@@ -134,7 +128,7 @@ public class RectRenderer : ShapeRenderer {
             vh.AddVert(new Vector3(0.5f, 0.5f), color32, TEXTURE_MID_POINT);
             vh.AddTriangle(0,1,2);
             vh.AddTriangle(2,1,3);
-            MeshUtil.UpdateMesh(innerMeshFilter, vh);
+            innerMeshController.mesh = vh.CreateMesh();
         }
     }
 
@@ -143,8 +137,7 @@ public class RectRenderer : ShapeRenderer {
             foreach (Bounds b in BorderSectionBounds()) {
                 MeshUtil.AddRect(b, vh);
             }
-
-            MeshUtil.UpdateMesh(borderMeshFilter, vh);
+            outerMeshController.mesh = vh.CreateMesh();
         }
     }
 
@@ -200,14 +193,14 @@ public class RectRenderer : ShapeRenderer {
             }
 
             // draw bot
-            MeshUtil.UpdateMesh(borderMeshFilter, vh);
+            outerMeshController.mesh = vh.CreateMesh();
         }
     }
 
 
     /****** PRIVATE: MESH HELPERS *****/
     bool HasInnerMesh() {
-        var innerMesh = innerMeshFilter.mesh;
+        var innerMesh = innerMeshController.mesh;
         if (innerMesh == null || innerMesh.vertices.Length == 0) {
             return false;
         }

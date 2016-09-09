@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System;
 
-[CustomEditor(typeof(RectRenderer))]
+/*[CustomEditor(typeof(RectRenderer))]*/
 public class RectPropertyInspector : Editor {
 
     public override void OnInspectorGUI() {

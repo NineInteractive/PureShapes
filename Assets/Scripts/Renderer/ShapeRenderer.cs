@@ -1,18 +1,48 @@
 using UnityEngine;
 
+[ExecuteInEditMode]
 public abstract class ShapeRenderer : MonoBehaviour {
 
-    protected bool propertyObjectChanged;
 
-    /*
-     * Update Methods
-     */
+    /***** CONST *****/
+    const string INNER_MESH_NAME = "Inner Mesh";
+    const string OUTER_MESH_NAME = "Outer Mesh";
 
+
+
+    /***** PROTECTED: VARIABLES *****/
+    protected bool propertyObjectChanged = true; // hax
+    protected ShapeMeshController innerMeshController;
+    protected ShapeMeshController outerMeshController;
+
+
+    /***** INITIALIZER *****/
+    protected virtual void Awake() {
+        innerMeshController = gameObject.GetComponentInChildByName<ShapeMeshController>(INNER_MESH_NAME);
+        if (innerMeshController == null) {
+            innerMeshController = createSubmeshWithName(INNER_MESH_NAME);
+        }
+
+        outerMeshController = gameObject.GetComponentInChildByName<ShapeMeshController>(OUTER_MESH_NAME);
+        if (outerMeshController == null) {
+            outerMeshController = createSubmeshWithName(OUTER_MESH_NAME);
+        }
+    }
+
+    ShapeMeshController createSubmeshWithName(string name) {
+        var go = new GameObject(name);
+        go.transform.parent = transform;
+        go.transform.localPosition = Vector3.zero;
+        return go.AddComponent<ShapeMeshController>();
+    }
+
+    /***** MONOBEHAVIOUR *****/
     void Update() {
-    //    Debug.Log("update " + this);
         RenderAndUpdatePropertyIfNeeded();
     }
 
+
+    /***** PUBLIC: FORCE RENDER *****/
     public void RenderAndUpdatePropertyIfNeeded() {
         if (propertyObjectChanged) {
             UpdateGameObject();
@@ -20,7 +50,6 @@ public abstract class ShapeRenderer : MonoBehaviour {
             UpdateMeshIfNeeded();
 
             CacheProperty();
-            propertyObjectChanged = false;
         } else if (Application.isEditor && GameObjectWasModified()) {
             SetProperty(GameObjectToShapeProperty());
             UpdateGameObject();
@@ -32,44 +61,23 @@ public abstract class ShapeRenderer : MonoBehaviour {
         }
     }
 
-    /*
-     * Needs to be implemented in children
-     */
 
+    /***** ABSTRACT METHODS *****/
+    // Update transform
     protected abstract void UpdateGameObject();
 
+    // Recreate mesh if needed
     protected abstract void UpdateMeshIfNeeded();
 
+    // Make a copy of property for comparison
     protected abstract void CacheProperty();
 
+    // Property setter
     protected abstract void SetProperty(ShapeProperty property);
 
-    /*
-     * Rerender criteria
-     */
-
+    // Checks if GameObject/Transform was modified in editor mode
     protected abstract bool GameObjectWasModified();
 
-    /*
-     * Getters, Setters
-     */
+    // Extract ShapeProperty from GameObject/Transform
     protected abstract ShapeProperty GameObjectToShapeProperty();
-
-    /*
-    public abstract ShapeProperty property {
-        get; set;
-    }
-    */
-
-    /*
-    public ShapeProperty property {
-        get {
-            return _property;
-        }
-        set {
-            propertyObjectChanged = true;
-            _property = value;
-        }
-    }
-    */
 }

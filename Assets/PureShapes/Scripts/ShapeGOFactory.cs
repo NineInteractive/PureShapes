@@ -43,23 +43,23 @@ public static class ShapeGOFactory {
         return renderer;
     }
 
-    static LineRenderer InstantiateLine(LineProperty property) {
-        var go = InstantiateGO(LINE_PREFAB_PATH, property.center);
-        var lr = go.GetComponent<LineRenderer>();
-        lr.property = property;
-        return lr;
-    }
-
-    static CircleRenderer InstantiateCircle(CircleProperty property) {
-        var go = InstantiateGO(CIRCLE_PREFAB_PATH, property.center);
-        CircleRenderer rd = go.GetComponent<CircleRenderer>();
+    public static LineRenderer InstantiateLine(LineProperty property) {
+        var go = new GameObject("Line");
+        var rd = go.AddComponent<LineRenderer>();
         rd.property = property;
         return rd;
     }
 
-    static RectRenderer InstantiateRect(RectProperty property) {
-        var go = InstantiateGO(RECT_PREFAB_PATH, property.center);
-        RectRenderer rd = go.GetComponent<RectRenderer>();
+    public static CircleRenderer InstantiateCircle(CircleProperty property) {
+        var go = new GameObject("Circle");
+        var rd = go.AddComponent<CircleRenderer>();
+        rd.property = property;
+        return rd;
+    }
+
+    public static RectRenderer InstantiateRect(RectProperty property) {
+        var go = new GameObject("Rect");
+        var rd = go.AddComponent<RectRenderer>();
         rd.property = property;
         return rd;
     }

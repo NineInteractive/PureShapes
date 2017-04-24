@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace PureShape {
 [ExecuteInEditMode]
 [SelectionBase]
 public class CircleRenderer : ShapeRenderer {
@@ -237,3 +238,4 @@ public class CircleRenderer : ShapeRenderer {
     }
 }
 
+}

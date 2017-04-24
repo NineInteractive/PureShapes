@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System;
 
+namespace PureShape {
 /*[CustomEditor(typeof(RectRenderer))]*/
 public class RectPropertyInspector : Editor {
 
@@ -68,3 +69,4 @@ public class RectPropertyInspector : Editor {
 //    }
 }
 
+}

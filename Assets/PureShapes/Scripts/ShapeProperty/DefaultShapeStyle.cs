@@ -2,6 +2,7 @@ using UnityEngine;
 //using UnityEditor;
 using System.Collections;
 
+namespace PureShape {
 
 public class DefaultShapeStyle {
     /*
@@ -138,5 +139,7 @@ public class DefaultShapeStyle {
         gapLength = obj.gapLength;
         */
     }
+
+}
 
 }

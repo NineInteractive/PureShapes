@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 
+namespace PureShape {
+
 //public interface IShapeProperty {
 [System.Serializable]
 public abstract class ShapeProperty : IEquatable<ShapeProperty>, ICloneable {
@@ -13,6 +15,7 @@ public abstract class ShapeProperty : IEquatable<ShapeProperty>, ICloneable {
     public Color color;
     public BorderProperty border;
     public ShapeType shapeType;
+    public int layer;
 
     /*
      * Constructor
@@ -23,13 +26,15 @@ public abstract class ShapeProperty : IEquatable<ShapeProperty>, ICloneable {
             Vector2         center = new Vector2(),
             float           angle = 0,
             Color           color = new Color(),
-            BorderProperty  border = new BorderProperty()
+            BorderProperty  border = new BorderProperty(),
+            int             layer = 0
     ) {
         this.shapeType = shapeType;
         this.center = center;
         this.angle = angle;
         this.color = color;
         this.border = border;
+        this.layer = layer;
     }
 
     /*
@@ -61,7 +66,8 @@ public abstract class ShapeProperty : IEquatable<ShapeProperty>, ICloneable {
             scale == other.scale &&
             Mathf.Approximately(angle, other.angle) &&
             color.Same(other.color) &&
-            border == other.border) { //?
+            border == other.border &&
+            layer == other.layer) { //?
             return true;
         }
         return false;
@@ -86,4 +92,5 @@ public abstract class ShapeProperty : IEquatable<ShapeProperty>, ICloneable {
         return hash;
     }
 
+}
 }

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+namespace PureShape {
+
 [ExecuteInEditMode]
 [SelectionBase]
 public class RectRenderer : ShapeRenderer {
@@ -28,6 +30,7 @@ public class RectRenderer : ShapeRenderer {
         width = property.width;
         height = property.height;
         angle = property.angle;
+        layer = property.layer;
     }
 
     protected override void UpdateMeshIfNeeded() {
@@ -312,6 +315,11 @@ public class RectRenderer : ShapeRenderer {
         }
     }
 
+    int layer {
+        get { return (int)transform.position.z; }
+        set { transform.position = transform.position.SwapZ(value); }
+    }
+
     Rect rect {
         get {
             return new Rect(transform.position, transform.localScale);
@@ -327,3 +335,4 @@ public class RectRenderer : ShapeRenderer {
     */
 }
 
+}

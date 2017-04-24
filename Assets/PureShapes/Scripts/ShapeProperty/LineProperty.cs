@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+using PureShape;
 
 [System.Serializable]
 public class LineProperty : ShapeProperty {

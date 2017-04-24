@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace PureShape {
+
 [System.Serializable]
 public class RectProperty : ShapeProperty {
 
@@ -12,8 +14,9 @@ public class RectProperty : ShapeProperty {
             float           width = 1,
             float           angle = 0,
             Color           color = new Color(),
-            BorderProperty  border = new BorderProperty()
-    ) : base(shapeType:ShapeType.Rect, center:center, angle:angle, color:color, border:border) {
+            BorderProperty  border = new BorderProperty(),
+            int             layer = 0
+    ) : base(shapeType:ShapeType.Rect, center:center, angle:angle, color:color, border:border, layer: layer) {
         this.height = height;
         this.width = width;
     }
@@ -27,4 +30,5 @@ public class RectProperty : ShapeProperty {
     public override object Clone() {
         return new RectProperty(center:center, height:height, width:width, angle:angle, color:color, border:border);
     }
+}
 }

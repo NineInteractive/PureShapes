@@ -10,6 +10,7 @@ public static class CameraExtensions {
     }
 }
 */
+namespace PureShape {
 
 public static class UnityExtensions {
     /*
@@ -192,4 +193,5 @@ public static class UnityExtensions {
         }
         return 1;
     }
+}
 }

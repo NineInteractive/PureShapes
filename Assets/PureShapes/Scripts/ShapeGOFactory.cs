@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace PureShape {
+
 public static class ShapeGOFactory {
     // instantiate static // maybe no need to be monobehaviour
 
@@ -18,7 +20,7 @@ public static class ShapeGOFactory {
                 shape = InstantiateLine((LineProperty)property);
                 break;
             case ShapeType.Rect:
-                shape = InstantiateCircle((CircleProperty)property);
+                shape = InstantiateRect((RectProperty)property);
                 break;
             default:
                 break;
@@ -81,4 +83,5 @@ public static class ShapeGOFactory {
 
         return go;
     }
+}
 }

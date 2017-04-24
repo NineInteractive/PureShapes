@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
+namespace PureShape {
 public static class ShapePropertyInspector {
     public static ShapeProperty Inspect(ShapeProperty shape) {
         shape.color = EditorGUILayout.ColorField("Color", shape.color);
@@ -26,4 +27,5 @@ public static class ShapePropertyInspector {
 
         return shape;
     }
+}
 }

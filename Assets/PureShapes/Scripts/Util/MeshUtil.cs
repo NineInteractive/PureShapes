@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace PureShape {
+
 public class MeshUtil {
     const string DEFAULT_MESH_NAME = "mesh";
     const string DEFAULT_MATERIAL_NAME = "material";
@@ -69,4 +71,6 @@ public class MeshUtil {
         vh.AddTriangle(vertIdx, vertIdx+1, vertIdx+2);
         vh.AddTriangle(vertIdx+1, vertIdx+2, vertIdx+3);
     }
+}
+
 }

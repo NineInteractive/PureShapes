@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace PureShape {
 // execute in edit mode
 [ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
@@ -148,3 +149,4 @@ public class LineRenderer : ShapeRenderer {
     }
 }
 
+}

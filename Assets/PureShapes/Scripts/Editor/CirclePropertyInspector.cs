@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
+namespace PureShape {
 [CustomEditor(typeof(CircleRenderer))]
 public class CirclePropertyInspector : Editor {
 
@@ -57,4 +58,5 @@ public class CirclePropertyInspector : Editor {
         }
     }
     */
+}
 }

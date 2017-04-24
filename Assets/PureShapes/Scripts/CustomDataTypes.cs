@@ -1,5 +1,7 @@
 using System;
 
+namespace PureShape {
+
 [Serializable]
 public class Count {
     public int minimum; 			//Minimum value for our Count class.
@@ -42,4 +44,6 @@ public static class Tuple
     {
         return new Tuple<T, U>(item1, item2);
     }
+}
+
 }

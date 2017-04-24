@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace PureShape {
+[RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode]
 public abstract class ShapeRenderer : MonoBehaviour {
 
@@ -27,6 +29,7 @@ public abstract class ShapeRenderer : MonoBehaviour {
         if (outerMeshController == null) {
             outerMeshController = createSubmeshWithName(OUTER_MESH_NAME);
         }
+        GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     ShapeMeshController createSubmeshWithName(string name) {
@@ -82,4 +85,5 @@ public abstract class ShapeRenderer : MonoBehaviour {
     protected abstract ShapeProperty GameObjectToShapeProperty();
 
     protected abstract bool PropertyObjectModifiedInEditor();
+}
 }

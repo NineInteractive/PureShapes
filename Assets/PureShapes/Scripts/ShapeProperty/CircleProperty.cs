@@ -1,5 +1,6 @@
 using UnityEngine;
 
+namespace PureShape {
 // TODO remove interface
 [System.Serializable]
 public class CircleProperty : ShapeProperty {
@@ -37,3 +38,4 @@ public class CircleProperty : ShapeProperty {
     // TODO:comparator belongs here
 }
 
+}
